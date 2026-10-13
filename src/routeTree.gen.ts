@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as BasesLegalesRouteImport } from './routes/bases-legales'
+import { Route as PendienteRouteImport } from './routes/pendiente'
+import { Route as PrivacidadRouteImport } from './routes/privacidad'
+import { Route as ResultadoRouteImport } from './routes/resultado'
+import { Route as ConfirmarTokenRouteImport } from './routes/confirmar.$token'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BasesLegalesRoute = BasesLegalesRouteImport.update({
+  id: '/bases-legales',
+  path: '/bases-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PendienteRoute = PendienteRouteImport.update({
+  id: '/pendiente',
+  path: '/pendiente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadRoute = PrivacidadRouteImport.update({
+  id: '/privacidad',
+  path: '/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultadoRoute = ResultadoRouteImport.update({
+  id: '/resultado',
+  path: '/resultado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfirmarTokenRoute = ConfirmarTokenRouteImport.update({
+  id: '/confirmar/$token',
+  path: '/confirmar/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/bases-legales': typeof BasesLegalesRoute
+  '/pendiente': typeof PendienteRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/resultado': typeof ResultadoRoute
+  '/confirmar/$token': typeof ConfirmarTokenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/bases-legales': typeof BasesLegalesRoute
+  '/pendiente': typeof PendienteRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/resultado': typeof ResultadoRoute
+  '/confirmar/$token': typeof ConfirmarTokenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/bases-legales': typeof BasesLegalesRoute
+  '/pendiente': typeof PendienteRoute
+  '/privacidad': typeof PrivacidadRoute
+  '/resultado': typeof ResultadoRoute
+  '/confirmar/$token': typeof ConfirmarTokenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/bases-legales'
+    | '/pendiente'
+    | '/privacidad'
+    | '/resultado'
+    | '/confirmar/$token'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/bases-legales'
+    | '/pendiente'
+    | '/privacidad'
+    | '/resultado'
+    | '/confirmar/$token'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/bases-legales'
+    | '/pendiente'
+    | '/privacidad'
+    | '/resultado'
+    | '/confirmar/$token'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  BasesLegalesRoute: typeof BasesLegalesRoute
+  PendienteRoute: typeof PendienteRoute
+  PrivacidadRoute: typeof PrivacidadRoute
+  ResultadoRoute: typeof ResultadoRoute
+  ConfirmarTokenRoute: typeof ConfirmarTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bases-legales': {
+      id: '/bases-legales'
+      path: '/bases-legales'
+      fullPath: '/bases-legales'
+      preLoaderRoute: typeof BasesLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pendiente': {
+      id: '/pendiente'
+      path: '/pendiente'
+      fullPath: '/pendiente'
+      preLoaderRoute: typeof PendienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidad': {
+      id: '/privacidad'
+      path: '/privacidad'
+      fullPath: '/privacidad'
+      preLoaderRoute: typeof PrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resultado': {
+      id: '/resultado'
+      path: '/resultado'
+      fullPath: '/resultado'
+      preLoaderRoute: typeof ResultadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confirmar/$token': {
+      id: '/confirmar/$token'
+      path: '/confirmar/$token'
+      fullPath: '/confirmar/$token'
+      preLoaderRoute: typeof ConfirmarTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  BasesLegalesRoute: BasesLegalesRoute,
+  PendienteRoute: PendienteRoute,
+  PrivacidadRoute: PrivacidadRoute,
+  ResultadoRoute: ResultadoRoute,
+  ConfirmarTokenRoute: ConfirmarTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
