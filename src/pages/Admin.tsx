@@ -123,9 +123,9 @@ function EditConcurso({ concurso }: { concurso: Concurso }) {
   const guardar = (e: React.FormEvent) => {
     e.preventDefault();
     const a = new Date(ini), b = new Date(fin);
-    if (!premio.trim()) return toast.error("El premio no puede estar vacío.");
-    if (isNaN(a.getTime()) || isNaN(b.getTime())) return toast.error("Fechas no válidas.");
-    if (b <= a) return toast.error("La fecha de cierre debe ser posterior a la de inicio.");
+    if (!premio.trim()) { toast.error("El premio no puede estar vacío."); return; }
+    if (isNaN(a.getTime()) || isNaN(b.getTime())) { toast.error("Fechas no válidas."); return; }
+    if (b <= a) { toast.error("La fecha de cierre debe ser posterior a la de inicio."); return; }
     storage.setConcurso({ ...storage.getConcurso(), premio: premio.trim().slice(0, 200), fechaInicio: a.toISOString(), fechaCierre: b.toISOString() });
     toast.success("Concurso actualizado");
   };
@@ -210,7 +210,7 @@ function SorteoSection({ participantes, sorteos }: { participantes: Participante
   const res = resultado(sorteos);
   const ejecutar = () => {
     const r = sortear();
-    if (!r) return toast.error("No hay participantes confirmados elegibles para el sorteo.");
+    if (!r) { toast.error("No hay participantes confirmados elegibles para el sorteo."); return; }
     toast.success(sorteos.length === 0 ? "Ganador seleccionado" : "Suplente seleccionado");
   };
   return (
@@ -238,7 +238,7 @@ function SorteoSection({ participantes, sorteos }: { participantes: Participante
         <ol className="mt-2 space-y-2 text-sm">
           {[...sorteos].map((s, i) => ({ s, i })).reverse().map(({ s, i }) => (
             <li key={s.id} className="rounded-2xl border p-3">
-              <p className="font-medium">#{i + 1} · {i === 0 ? "Ganador" : "Suplente"}: {nombre(i === 0 ? s.ganadorId : s.suplentesIds[0])}</p>
+              <p className="font-medium">#{i + 1} · {i === 0 ? "Ganador" : "Suplente"}: {nombre(i === 0 ? s.ganadorId : (s.suplentesIds[0] ?? ""))}</p>
               <p className="text-xs text-muted-foreground">{formatearFecha(s.fechaHora)} · {s.totalParticipantesElegibles} elegibles · id {s.id.slice(0, 8)}</p>
             </li>
           ))}

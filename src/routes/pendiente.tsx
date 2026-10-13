@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import Pendiente from "@/pages/Pendiente";
 
 export const Route = createFileRoute("/pendiente")({
-  validateSearch: (s: Record<string, unknown>): { t?: string } => (typeof s.t === "string" ? { t: s.t } : {}),
+  validateSearch: (s: Record<string, unknown>): { t?: string } => (typeof s["t"] === "string" ? { t: s["t"] } : {}),
   head: () => ({
     meta: [
       { title: "Confirma tu participación · Concurso del Salón" },

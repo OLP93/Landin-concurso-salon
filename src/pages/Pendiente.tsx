@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MessageCard, PageShell } from "@/components/SiteChrome";
 
-export default function Pendiente({ token }: { token?: string }) {
+export default function Pendiente({ token }: { token?: string | undefined }) {
   const enlace = token ? `/confirmar/${token}` : null;
   return (
     <PageShell>

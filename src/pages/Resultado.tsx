@@ -19,7 +19,7 @@ export default function Resultado() {
     <PageShell>
       <div className="mx-auto max-w-lg text-center">
         <h1 className="text-5xl font-semibold">Resultado del sorteo</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Celebrado el {formatearFecha(s.sorteos[0].fechaHora)} entre {s.sorteos[0].totalParticipantesElegibles} participaciones confirmadas.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Celebrado el {formatearFecha(s.sorteos[0]!.fechaHora)} entre {s.sorteos[0]!.totalParticipantesElegibles} participaciones confirmadas.</p>
         <div className="mt-8 rounded-3xl border bg-card p-8 shadow-soft">
           <p className="text-xs uppercase tracking-widest text-muted-foreground">Ganadora</p>
           <p className="mt-2 font-display text-3xl font-semibold text-gold-gradient">{ganadorId && fmt(ganadorId)}</p>
