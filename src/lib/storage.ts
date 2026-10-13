@@ -78,7 +78,7 @@ export const storage = {
 export interface NuevaInscripcion {
   nombre: string;
   correo: string;
-  telefono?: string;
+  telefono?: string | undefined;
   aceptaBases: boolean;
   aceptaComunicaciones: boolean;
 }

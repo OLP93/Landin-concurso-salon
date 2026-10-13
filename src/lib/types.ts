@@ -2,7 +2,7 @@ export interface Participante {
   id: string;
   nombre: string;
   correo: string;
-  telefono?: string;
+  telefono?: string | undefined;
   aceptaBases: boolean;
   aceptaComunicaciones: boolean;
   confirmado: boolean;

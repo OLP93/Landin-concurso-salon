@@ -8,7 +8,7 @@ export function randomIndex(max: number): number {
   let x: number;
   do {
     crypto.getRandomValues(buf);
-    x = buf[0];
+    x = buf[0]!;
   } while (x >= limit);
   return x % max;
 }
@@ -40,13 +40,13 @@ export function realizarExtraccion(
 ): Sorteo | null {
   const pool = elegibles(participantes, sorteos);
   if (pool.length === 0) return null;
-  const elegido = pool[rnd(pool.length)];
+  const elegido = pool[rnd(pool.length)]!;
   const base = { id: crypto.randomUUID(), fechaHora: now.toISOString(), totalParticipantesElegibles: pool.length };
   if (sorteos.length === 0) return { ...base, ganadorId: elegido.id, suplentesIds: [] };
-  return { ...base, ganadorId: sorteos[0].ganadorId, suplentesIds: [elegido.id] };
+  return { ...base, ganadorId: sorteos[0]!.ganadorId, suplentesIds: [elegido.id] };
 }
 
 export function resultado(sorteos: Sorteo[]): { ganadorId: string | null; suplentesIds: string[] } {
   if (sorteos.length === 0) return { ganadorId: null, suplentesIds: [] };
-  return { ganadorId: sorteos[0].ganadorId, suplentesIds: sorteos.slice(1).flatMap((s) => s.suplentesIds) };
+  return { ganadorId: sorteos[0]!.ganadorId, suplentesIds: sorteos.slice(1).flatMap((s) => s.suplentesIds) };
 }

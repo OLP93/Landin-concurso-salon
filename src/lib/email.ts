@@ -1,7 +1,7 @@
 import type { Plantilla } from "./types";
 
 export function renderPlantilla(texto: string, vars: Record<string, string>): string {
-  return texto.replace(/\{\{\s*(\w+)\s*\}\}/g, (m, k) => (k in vars ? vars[k] : m));
+  return texto.replace(/\{\{\s*(\w+)\s*\}\}/g, (m: string, k: string) => vars[k] ?? m);
 }
 
 /**
