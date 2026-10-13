@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import { MessageCard, PageShell } from "@/components/SiteChrome";
 import { confirmarToken } from "@/lib/storage";
 
+// Evita que el doble efecto de desarrollo muestre "ya confirmada" en la primera visita.
+const cache = new Map<string, ReturnType<typeof confirmarToken>>();
+
 export default function Confirmar({ token }: { token: string }) {
   const [r, setR] = useState<ReturnType<typeof confirmarToken> | null>(null);
-  useEffect(() => setR(confirmarToken(token)), [token]);
+  useEffect(() => {
+    if (!cache.has(token)) cache.set(token, confirmarToken(token));
+    setR(cache.get(token)!);
+  }, [token]);
   return (
     <PageShell>
       {!r ? (
