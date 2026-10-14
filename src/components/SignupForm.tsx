@@ -1,3 +1,4 @@
+import { MODO_DEMO } from "@/lib/config";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -47,7 +48,7 @@ export function SignupForm({ disabled }: { disabled: boolean }) {
     }
     const enlace = `${window.location.origin}/confirmar/${r.participante.tokenConfirmacion}`;
     await sendEmail(storage.getPlantillas().confirmacion, r.participante.correo, { nombre: r.participante.nombre, enlace_confirmacion: enlace });
-    navigate({ to: "/pendiente", search: { t: r.participante.tokenConfirmacion } });
+    navigate({ to: "/pendiente", search: MODO_DEMO ? { t: r.participante.tokenConfirmacion } : {} });
   };
 
   const err = (id: string, msg?: string) =>

@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
+import { MODO_DEMO } from "@/lib/config";
 import { MessageCard, PageShell } from "@/components/SiteChrome";
 
 export default function Pendiente({ token }: { token?: string | undefined }) {
-  const enlace = token ? `/confirmar/${token}` : null;
+  const enlace = MODO_DEMO && token ? `/confirmar/${token}` : null;
   return (
     <PageShell>
       <MessageCard title="Revisa tu correo y confirma tu participación">

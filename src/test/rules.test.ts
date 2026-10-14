@@ -62,6 +62,7 @@ describe("reglas", () => {
     expect(escaparCelda('a,"b"')).toBe('"a,""b"""');
     expect(escaparCelda("=SUM(A1)")).toBe("'=SUM(A1)");
     expect(escaparCelda("+34 600")).toBe("'+34 600");
+    expect(escaparCelda("+34600111222", false)).toBe("+34600111222");
   });
 
   it("enmascara datos públicos", () => {
