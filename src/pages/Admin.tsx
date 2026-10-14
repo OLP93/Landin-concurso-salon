@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { PageShell } from "@/components/SiteChrome";
 import { useContest } from "@/hooks/use-contest";
-import { ADMIN_PASSWORD } from "@/lib/config";
+import { ADMIN_PASSWORD, MODO_DEMO } from "@/lib/config";
 import { formatearFecha, isoALocal } from "@/lib/contest";
 import { descargarCsv, participantesACsv } from "@/lib/csv";
 import { elegibles, resultado } from "@/lib/draw";
@@ -94,11 +94,11 @@ function Panel({ onLogout }: { onLogout: () => void }) {
         <Participantes participantes={s.participantes} />
         <SorteoSection participantes={s.participantes} sorteos={s.sorteos} />
         <PlantillasEditor plantillas={s.plantillas} premio={s.concurso.premio} />
-        <div className="text-right">
+        {MODO_DEMO && <div className="text-right">
           <Confirm title="¿Restablecer datos de demostración?" desc="Se borrarán participantes, sorteos, plantillas y ajustes del concurso de este navegador." onConfirm={() => { storage.resetDemo(); toast.success("Datos restablecidos"); }}>
             <Button variant="ghost" size="sm" className="text-muted-foreground">Restablecer datos de demostración</Button>
           </Confirm>
-        </div>
+        </div>}
       </div>
     </PageShell>
   );
