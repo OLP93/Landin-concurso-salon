@@ -15,4 +15,4 @@ React · TypeScript · Tailwind CSS · shadcn/ui · react-hook-form · zod
 ## Estado
 Los datos se guardan en el navegador (sin backend) y el envío de correos está simulado.
 
-**Demo:** [pendiente]
+**Proyecto publicado:** https://concurso-salon.lovable.app
